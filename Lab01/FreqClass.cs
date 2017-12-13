@@ -8,34 +8,9 @@ namespace Lab01
 {
     class FreqClass
     {
-        string xvalue;
-        double freq=0;
+        public string Xvalue { get; set; }
 
-        public string Xvalue
-        {
-            get
-            {
-                return xvalue;
-            }
-
-            set
-            {
-                xvalue = value;
-            }
-        }
-
-        public double Freq
-        {
-            get
-            {
-                return freq;
-            }
-
-            set
-            {
-                freq = value;
-            }
-        }
+        public double Freq { get; set; } = 0;
 
         public FreqClass(string xvalue)
         {

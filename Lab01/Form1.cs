@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -7,50 +8,40 @@ namespace Lab01
 {
     public partial class Form1 : Form
     {
-        int number_of_elements;
-        List<double> squaremed_list = new List<double>();//набор хранения  данных
-         List<double> multy_con_list = new List<double>();
-        List<FreqClass> freqlist;
-        List<FreqClass> freqlist2;
+        private int _numberOfElements;
+        private List<double> _multyConList = new List<double>();
+        private readonly List<FreqClass> _freqlist;
+        private readonly List<FreqClass> _freqlist2;
 
-        public List<double> Squaremed_list
-        {
-            get
-            {
-                return squaremed_list;
-            }
-
-            set
-            {
-                squaremed_list = value;
-            }
-        }
+        private List<double> SquaremedList { get;  } = new List<double>();
 
         public Form1()
         {
             InitializeComponent();
 
-            freqlist = new List<FreqClass>();
-            freqlist.Add(new FreqClass("0-0.1"));
-            freqlist.Add(new FreqClass("0.1-0.2"));
-            freqlist.Add(new FreqClass("0.2-0.3"));
-            freqlist.Add(new FreqClass("0.3-0.4"));
-            freqlist.Add(new FreqClass("0.4-0.5"));
-            freqlist.Add(new FreqClass("0.5-0.6"));
-            freqlist.Add(new FreqClass("0.6-0.7"));
-            freqlist.Add(new FreqClass("0.7-0.8"));
-            freqlist.Add(new FreqClass("0.8-0.9"));
-            freqlist.Add(new FreqClass("0.9-1.0"));
+            _freqlist = new List<FreqClass>
+            {
+                new FreqClass("0-0.1"),
+                new FreqClass("0.1-0.2"),
+                new FreqClass("0.2-0.3"),
+                new FreqClass("0.3-0.4"),
+                new FreqClass("0.4-0.5"),
+                new FreqClass("0.5-0.6"),
+                new FreqClass("0.6-0.7"),
+                new FreqClass("0.7-0.8"),
+                new FreqClass("0.8-0.9"),
+                new FreqClass("0.9-1.0")
+            };
 
-           freqlist2 = new List<FreqClass>(freqlist);
+            _freqlist2 = new List<FreqClass>(_freqlist);
 
-            chartMSK.DataSource = freqlist;
-            chart2.DataSource = freqlist2;
+            chartMSK.DataSource = _freqlist;
+            chart2.DataSource = _freqlist2;
         }
 
-      
 
-        void calcFreq(List<double> li, List<FreqClass> flist) {
+        private void CalcFreq(List<double> li, List<FreqClass> flist) {
+
             foreach (var v in flist) {
                 v.Freq = 0;
             }
@@ -70,7 +61,7 @@ namespace Lab01
 
         }
         //расчет  коэффициента корреляции 
-        double r_value(List<double> li)
+        double R_value(List<double> li)
         {
             List<double> xlist = new List<double>(li);
          
@@ -85,8 +76,7 @@ namespace Lab01
                 ymed = ymed+ xlist[i];
             ymed = ymed / (xlist.Count-1);
 
-           
-            double r;
+
             double chislitel = 0;
             double podznamenatel1 = 0;
             double podznamenatel2 = 0;
@@ -97,124 +87,115 @@ namespace Lab01
                 podznamenatel2 = podznamenatel2 + (Math.Pow((ylist[i] - ymed), 2));
             }
             znamenatel = Math.Sqrt(podznamenatel1* podznamenatel2);
-            r = chislitel / znamenatel;
+            var r = chislitel / znamenatel;
                  return r;
         }
         double Mcorp(List<double> li)
         {
-            
-            double sumZ = 0;
-            double Mcup = 0;
-            foreach (var v in li)
-            {
-                sumZ += v;
-            }
-            Mcup = sumZ / li.Count;
-            return Mcup;
+            double mcup = 0;
+            double sumZ = li.Sum();
+            mcup = sumZ / li.Count;
+            return mcup;
         }
         double Dcorp(List<double> li)
         {
          
             double sumZ = 0;
-            double Dcup;
-            sumZ = 0;
-            foreach (var v in li)
-            {
-                sumZ = sumZ + Math.Pow(v, 2);
-            }
-            Dcup = (sumZ / li.Count) - Math.Pow(Mcorp(li), 2);
-            return Dcup;
+            sumZ = li.Aggregate<double, double>(0, (current, v) => current + Math.Pow(v, 2));
+            var dcup = (sumZ / li.Count) - Math.Pow(Mcorp(li), 2);
+            return dcup;
         }
         // Метод середины квадрата
-        private void buttonMSK_Click(object sender, EventArgs e)
+        private void ButtonMSK_Click(object sender, EventArgs e)
         {
-            Squaremed_list.Clear();
+            SquaremedList.Clear();
             listViewMSK.Items.Clear();
-            int local_value =Convert.ToInt32( textBoxStart_value.Text);
-            number_of_elements = Convert.ToInt32(textBoxNumber_of_elements.Text);
-            int[] r_data = new int[8];
+            int localValue =Convert.ToInt32( textBoxStart_value.Text);
+            _numberOfElements = Convert.ToInt32(textBoxNumber_of_elements.Text);
+            int[] rData = new int[8];
 
 
-            if (local_value < 1000 || local_value > 9999)
+            if (localValue < 1000 || localValue > 9999)
             {
                 MessageBox.Show("Вы ввели некорректное число");
                 return;
             }
-            for (int j = 1; j <= number_of_elements; j++)
+            for (int j = 1; j <= _numberOfElements; j++)
             {
-                local_value = (int)Math.Pow(local_value, 2);
+                localValue = (int)Math.Pow(localValue, 2);
                 for (int i = 7; i >= 0; i--)
                 {
-                    int rezid = local_value % 10;
-                    local_value = local_value / 10;
-                    r_data[i] = rezid;
+                    int rezid = localValue % 10;
+                    localValue = localValue / 10;
+                    rData[i] = rezid;
                 }
-                local_value = r_data[2] * 1000 + r_data[3] * 100 + r_data[4] * 10 + r_data[5];
-                Squaremed_list.Add(local_value);
-                listViewMSK.Items.Add(local_value.ToString());
+                localValue = rData[2] * 1000 + rData[3] * 100 + rData[4] * 10 + rData[5];
+                SquaremedList.Add(localValue);
+                listViewMSK.Items.Add(localValue.ToString());
             }
-            for (int i = 0; i < Squaremed_list.Count; i++)
-                Squaremed_list[i] = Squaremed_list[i] / 10000;
-            calcFreq(Squaremed_list, freqlist);
+            for (int i = 0; i < SquaremedList.Count; i++)
+                SquaremedList[i] = SquaremedList[i] / 10000;
+            CalcFreq(SquaremedList, _freqlist);
             chartMSK.DataBind();
-            labelD.Text= Dcorp(Squaremed_list).ToString();
-            labelM.Text = Mcorp(Squaremed_list).ToString();
-            labelR.Text = r_value(Squaremed_list).ToString();
+            labelD.Text= Dcorp(SquaremedList).ToString();
+            labelM.Text = Mcorp(SquaremedList).ToString();
+            labelR.Text = R_value(SquaremedList).ToString();
         }
 
         //метод Мультипликативный конгруэнтный и проверка
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            multy_con_list.Clear();
+            _multyConList.Clear();
             listViewMKM.Items.Clear();
-            int local_value = Convert.ToInt32(textBoxStart_value.Text);
-            number_of_elements = Convert.ToInt32(textBoxNumber_of_elements.Text);
-            double Ai = local_value;
-            double z = 0;
-            int modul_m = Convert.ToInt32(textBoxMValue.Text);
-            int k_value = Convert.ToInt32(textBoxKValue.Text);
+            int localValue = Convert.ToInt32(textBoxStart_value.Text);
+            _numberOfElements = Convert.ToInt32(textBoxNumber_of_elements.Text);
+            int modulM = Convert.ToInt32(textBoxMValue.Text);
+            int kValue = Convert.ToInt32(textBoxKValue.Text);
 
 
-            if (local_value < 1000 || local_value > 9999)
+            if (localValue < 1000 || localValue > 9999)
             {
                 MessageBox.Show("Вы ввели некорректное число");
                 return;
             }
 
-            var AiList = new List<double>();
-            AiList.Add(1);
+            var aiList = new List<double>
+            {
+                1
+            };
 
-            multy_con_list = new List<double>();
-            var firstNumber = (double)1 / modul_m;
-            multy_con_list.Add(firstNumber);
+            _multyConList = new List<double>();
+            var firstNumber = (double)1 / modulM;
+            _multyConList.Add(firstNumber);
             listViewMKM.Items.Add(firstNumber.ToString());
 
-            for (int j = 1; j < number_of_elements; j++)  
+            for (int j = 1; j < _numberOfElements; j++)  
             {
-                Ai = (k_value * AiList[j - 1]) % modul_m;
+                var ai = (kValue * aiList[j - 1]) % modulM;
                 
-                z = Ai / modul_m;
+                var z = ai / modulM;
                 
-                AiList.Add(Ai);
-                multy_con_list.Add(z);                
+                aiList.Add(ai);
+                _multyConList.Add(z);                
                 listViewMKM.Items.Add(z.ToString());
             }
-            calcFreq(multy_con_list, freqlist2);
+            CalcFreq(_multyConList, _freqlist2);
             chart2.DataBind();
-            labelD.Text = Dcorp(multy_con_list).ToString();
-            labelM.Text = Mcorp(multy_con_list).ToString();
-            labelR.Text = r_value(multy_con_list).ToString();
+            labelD.Text = Dcorp(_multyConList).ToString();
+            labelM.Text = Mcorp(_multyConList).ToString();
+            labelR.Text = R_value(_multyConList).ToString();
 
         }
 
-        private void listViewMKM_KeyDown(object sender, KeyEventArgs e)
+        private void ListViewMKM_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.C)
             {
                 CopyListBox(listViewMKM);
             }
         }
-        public void CopyListBox(ListView list)
+
+        private void CopyListBox(ListView list)
         {
 
             StringBuilder sb = new StringBuilder();
@@ -227,7 +208,7 @@ namespace Lab01
 
         }
 
-        private void listViewMSK_KeyDown(object sender, KeyEventArgs e)
+        private void ListViewMSK_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.C)
             {
@@ -236,17 +217,17 @@ namespace Lab01
 
         }
 
-              private void tabControl1_Selected(object sender, TabControlEventArgs e)
+              private void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
          
 
             if (e.TabPageIndex == 1)
             {
-                if (multy_con_list.Count > 0)
+                if (_multyConList.Count > 0)
                 {
-                    labelD.Text = Dcorp(multy_con_list).ToString();
-                    labelM.Text = Mcorp(multy_con_list).ToString();
-                    labelR.Text = r_value(multy_con_list).ToString();
+                    labelD.Text = Dcorp(_multyConList).ToString();
+                    labelM.Text = Mcorp(_multyConList).ToString();
+                    labelR.Text = R_value(_multyConList).ToString();
                 }
                 else {
                     labelD.Text = "0";
@@ -257,11 +238,11 @@ namespace Lab01
             }
             else
             {
-                if (Squaremed_list.Count > 0)
+                if (SquaremedList.Count > 0)
                 {
-                    labelD.Text = Dcorp(Squaremed_list).ToString();
-                    labelM.Text = Mcorp(Squaremed_list).ToString();
-                    labelR.Text = r_value(Squaremed_list).ToString();
+                    labelD.Text = Dcorp(SquaremedList).ToString();
+                    labelM.Text = Mcorp(SquaremedList).ToString();
+                    labelR.Text = R_value(SquaremedList).ToString();
                 }
                 else {
                     labelD.Text = "0";

@@ -114,7 +114,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1452, 481);
             this.tabControl1.TabIndex = 1;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabControl1_Selected);
             // 
             // tabPage1
             // 
@@ -141,7 +141,7 @@
             this.listViewMSK.TabIndex = 2;
             this.listViewMSK.UseCompatibleStateImageBehavior = false;
             this.listViewMSK.View = System.Windows.Forms.View.List;
-            this.listViewMSK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewMSK_KeyDown);
+            this.listViewMSK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListViewMSK_KeyDown);
             // 
             // buttonMSK
             // 
@@ -152,7 +152,7 @@
             this.buttonMSK.TabIndex = 1;
             this.buttonMSK.Text = "Запустить процесс генерации";
             this.buttonMSK.UseVisualStyleBackColor = true;
-            this.buttonMSK.Click += new System.EventHandler(this.buttonMSK_Click);
+            this.buttonMSK.Click += new System.EventHandler(this.ButtonMSK_Click);
             // 
             // tabPage2
             // 
@@ -217,7 +217,7 @@
             this.listViewMKM.TabIndex = 5;
             this.listViewMKM.UseCompatibleStateImageBehavior = false;
             this.listViewMKM.View = System.Windows.Forms.View.List;
-            this.listViewMKM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewMKM_KeyDown);
+            this.listViewMKM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListViewMKM_KeyDown);
             // 
             // button1
             // 
@@ -228,7 +228,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Запустить процесс генерации";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // chart2
             // 
