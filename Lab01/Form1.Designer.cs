@@ -38,6 +38,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartMSK = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listViewMSK = new System.Windows.Forms.ListView();
@@ -60,15 +61,17 @@
             this.labelR = new System.Windows.Forms.Label();
             this.numericStart_value = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownGenCounter = new System.Windows.Forms.NumericUpDown();
-            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownK_value = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.chartMSK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericStart_value)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGenCounter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownK_value)).BeginInit();
             this.SuspendLayout();
             // 
             // chartMSK
@@ -100,6 +103,10 @@
             this.chartMSK.Text = "Таблица Частот";
             title1.Name = "Частоты";
             this.chartMSK.Titles.Add(title1);
+            // 
+            // freqClassBindingSource
+            // 
+            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
             // 
             // tabControl1
             // 
@@ -379,15 +386,41 @@
             0,
             0});
             // 
-            // freqClassBindingSource
+            // label8
             // 
-            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(40, 123);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(436, 20);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "К, число диапазонов для оценки распределения (5-100)";
+            // 
+            // numericUpDownK_value
+            // 
+            this.numericUpDownK_value.Location = new System.Drawing.Point(532, 121);
+            this.numericUpDownK_value.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownK_value.Name = "numericUpDownK_value";
+            this.numericUpDownK_value.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDownK_value.TabIndex = 13;
+            this.numericUpDownK_value.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownK_value.ValueChanged += new System.EventHandler(this.numericUpDownK_value_ValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1522, 655);
+            this.Controls.Add(this.numericUpDownK_value);
             this.Controls.Add(this.numericUpDownGenCounter);
             this.Controls.Add(this.numericStart_value);
             this.Controls.Add(this.labelR);
@@ -396,6 +429,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
@@ -404,6 +438,7 @@
             this.Name = "Form1";
             this.Text = "Лабораторная №1";
             ((System.ComponentModel.ISupportInitialize)(this.chartMSK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -411,7 +446,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericStart_value)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGenCounter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownK_value)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,6 +478,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.NumericUpDown numericStart_value;
         private System.Windows.Forms.NumericUpDown numericUpDownGenCounter;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDownK_value;
     }
 }
 

@@ -11,16 +11,23 @@ namespace Lab01
         private int _numberOfElements;
         private List<double> _multyConList = new List<double>();
         private readonly List<FreqClass> _freqlist = new List<FreqClass>();
-        private readonly List<FreqClass> _freqlist2;
+        private List<FreqClass> _freqlist2;
 
         private List<double> SquaremedList { get;  } = new List<double>();
 
         public Form1()
         {
             InitializeComponent();
-            for (double i = 0; i < 1; i=i+0.1)
+            GenKRanges();
+        }
+        //метод генерации диапазонов для оценивания вероятности
+        private void GenKRanges()
+        {
+            _freqlist.Clear();
+            var rangeLength = 1 / numericUpDownK_value.Value;
+            for (decimal i = 0; i < 1; i = i + rangeLength)
             {
-                _freqlist.Add(new FreqClass(i+"-"+ (i+0.1)){LeftRange = i,RightRange = i + 0.1 });
+                _freqlist.Add(new FreqClass(i.ToString("##.###") + "-" + (i + rangeLength).ToString("##.###")) {LeftRange = (double)i, RightRange = (double)(i + rangeLength) });
             }
 
 
@@ -265,6 +272,11 @@ namespace Lab01
                 }
             }
 
+        }
+        //перегенрация диапазонов при изменении их количества
+        private void numericUpDownK_value_ValueChanged(object sender, EventArgs e)
+        {
+            GenKRanges();
         }
     }
 }
