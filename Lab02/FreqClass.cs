@@ -8,13 +8,13 @@ namespace Lab01
 {
     class FreqClass
     {
-        double xvalue;
-        double freq=0;
+        double _xvalue;
+        double _freq=0;
         public FreqClass(double xvalue)
         {
-            this.xvalue = xvalue;
+            this._xvalue = xvalue;
         }
-        public double Xvalue { get => xvalue; set => xvalue = value; }
-        public double Freq { get => freq; set => freq = value; }
+        public double Xvalue { get => _xvalue; set => _xvalue = value; }
+        public double Freq { get => _freq; set => _freq = value; }
     }
 }
