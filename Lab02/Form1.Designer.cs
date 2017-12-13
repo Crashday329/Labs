@@ -42,9 +42,9 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxStart_value = new System.Windows.Forms.TextBox();
+            this.textBoxStart_value = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxNumber_of_elements = new System.Windows.Forms.TextBox();
+            this.textBoxNumber_of_elements = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.labelM = new System.Windows.Forms.Label();
@@ -53,8 +53,8 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.textBoxKValue = new System.Windows.Forms.TextBox();
-            this.textBoxMValue = new System.Windows.Forms.TextBox();
+            this.textBoxKValue = new System.Windows.Forms.NumericUpDown();
+            this.textBoxMValue = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.listViewMKM = new System.Windows.Forms.ListView();
@@ -62,14 +62,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.AtextBox = new System.Windows.Forms.TextBox();
-            this.BtextBox = new System.Windows.Forms.TextBox();
+            this.AtextBox = new System.Windows.Forms.NumericUpDown();
+            this.BtextBox = new System.Windows.Forms.NumericUpDown();
             this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxStart_value)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxNumber_of_elements)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxKValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxMValue)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AtextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,10 +95,24 @@
             this.textBoxStart_value.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxStart_value.Location = new System.Drawing.Point(532, 19);
             this.textBoxStart_value.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxStart_value.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.textBoxStart_value.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.textBoxStart_value.Name = "textBoxStart_value";
-            this.textBoxStart_value.Size = new System.Drawing.Size(48, 26);
+            this.textBoxStart_value.Size = new System.Drawing.Size(89, 26);
             this.textBoxStart_value.TabIndex = 3;
-            this.textBoxStart_value.Text = "1994";
+            this.textBoxStart_value.Value = new decimal(new int[] {
+            1994,
+            0,
+            0,
+            0});
             // 
             // label2
             // 
@@ -110,10 +130,24 @@
             this.textBoxNumber_of_elements.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxNumber_of_elements.Location = new System.Drawing.Point(382, 51);
             this.textBoxNumber_of_elements.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNumber_of_elements.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.textBoxNumber_of_elements.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.textBoxNumber_of_elements.Name = "textBoxNumber_of_elements";
             this.textBoxNumber_of_elements.Size = new System.Drawing.Size(89, 26);
             this.textBoxNumber_of_elements.TabIndex = 5;
-            this.textBoxNumber_of_elements.Text = "1000";
+            this.textBoxNumber_of_elements.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             // 
             // label3
             // 
@@ -271,18 +305,36 @@
             // textBoxKValue
             // 
             this.textBoxKValue.Location = new System.Drawing.Point(304, 8);
+            this.textBoxKValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.textBoxKValue.Name = "textBoxKValue";
             this.textBoxKValue.Size = new System.Drawing.Size(100, 26);
             this.textBoxKValue.TabIndex = 9;
-            this.textBoxKValue.Text = "106";
+            this.textBoxKValue.Value = new decimal(new int[] {
+            2416,
+            0,
+            0,
+            0});
             // 
             // textBoxMValue
             // 
             this.textBoxMValue.Location = new System.Drawing.Point(102, 7);
+            this.textBoxMValue.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.textBoxMValue.Name = "textBoxMValue";
             this.textBoxMValue.Size = new System.Drawing.Size(100, 26);
             this.textBoxMValue.TabIndex = 8;
-            this.textBoxMValue.Text = "6075";
+            this.textBoxMValue.Value = new decimal(new int[] {
+            1771875,
+            0,
+            0,
+            0});
             // 
             // label7
             // 
@@ -360,7 +412,11 @@
             this.AtextBox.Name = "AtextBox";
             this.AtextBox.Size = new System.Drawing.Size(55, 22);
             this.AtextBox.TabIndex = 14;
-            this.AtextBox.Text = "2";
+            this.AtextBox.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // BtextBox
             // 
@@ -368,7 +424,11 @@
             this.BtextBox.Name = "BtextBox";
             this.BtextBox.Size = new System.Drawing.Size(55, 22);
             this.BtextBox.TabIndex = 15;
-            this.BtextBox.Text = "5";
+            this.BtextBox.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // freqClassBindingSource
             // 
@@ -397,12 +457,18 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Лабораторная №2";
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxStart_value)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxNumber_of_elements)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxKValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxMValue)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AtextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtextBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -411,17 +477,17 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxStart_value;
+        private System.Windows.Forms.NumericUpDown textBoxStart_value;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxNumber_of_elements;
+        private System.Windows.Forms.NumericUpDown textBoxNumber_of_elements;
         private System.Windows.Forms.BindingSource freqClassBindingSource;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labelM;
         private System.Windows.Forms.Label labelD;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBoxKValue;
-        private System.Windows.Forms.TextBox textBoxMValue;
+        private System.Windows.Forms.NumericUpDown textBoxKValue;
+        private System.Windows.Forms.NumericUpDown textBoxMValue;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListView listViewMKM;
@@ -431,8 +497,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart fChart;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox AtextBox;
-        private System.Windows.Forms.TextBox BtextBox;
+        private System.Windows.Forms.NumericUpDown AtextBox;
+        private System.Windows.Forms.NumericUpDown BtextBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

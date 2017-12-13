@@ -84,15 +84,21 @@ namespace Lab01
 
         // генерация случайных данных метод Мультипликат
         private void button1_Click(object sender, EventArgs e)
-        {
+        { _a = Convert.ToInt16(AtextBox.Text);
+            _b = Convert.ToInt16(BtextBox.Text);
+            if (_a>=_b)
+            {
+                MessageBox.Show("Не правильный диапазон a b");
+                return;
+            }
+
             _multyConList.Clear();
             _ravnomernList.Clear();
             _fxDi.Clear();
             _fxDe.Clear();
             listViewMKM.Items.Clear();
 
-            _a = Convert.ToInt16(AtextBox.Text);
-            _b = Convert.ToInt16(BtextBox.Text);
+           
             int localValue = Convert.ToInt32(textBoxStart_value.Text);
             _numberOfElements = Convert.ToInt32(textBoxNumber_of_elements.Text);
             double ai = localValue;
@@ -182,7 +188,8 @@ namespace Lab01
                 CopyListBox(listViewMKM);
             }
         }
-        public void CopyListBox(ListView list)
+
+        private void CopyListBox(ListView list)
         {
 
             StringBuilder sb = new StringBuilder();
