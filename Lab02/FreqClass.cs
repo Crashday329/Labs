@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lab01
 {
-    class FreqClass
+    internal class FreqClass
     {
-        double _xvalue;
-        double _freq=0;
         public FreqClass(double xvalue)
         {
-            this._xvalue = xvalue;
+            this.Xvalue = xvalue;
         }
-        public double Xvalue { get => _xvalue; set => _xvalue = value; }
-        public double Freq { get => _freq; set => _freq = value; }
+        public double Xvalue { get; set; }
+
+        public double Freq { get; set; } = 0;
     }
 }

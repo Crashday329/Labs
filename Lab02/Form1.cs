@@ -8,16 +8,16 @@ namespace Lab01
 {
     public partial class Form1 : Form
     {
-        double _a = 2;
-        double _b = 5;
-        int _numberOfElements;
+        private double _a = 2;
+        private double _b = 5;
+        private int _numberOfElements;
 
-        readonly List<double> _multyConList = new List<double>();//набор данных в диапазоне от 0 до 1
-        readonly List<double> _ravnomernList = new List<double>();//набор хранения равномерных значений
-        readonly List<double> _fxDi = new List<double>();//набор Y для функции распределения
-        readonly List<double> _fxDe = new List<double>();//набор Y для функции  плотности 
-        readonly List<int> _ll = new List<int>();// данные Y для хранения частот 
-        readonly List<double> _num = new List<double>();//данные подписи Х на графике
+        private readonly List<double> _multyConList = new List<double>();//набор данных в диапазоне от 0 до 1
+        private readonly List<double> _ravnomernList = new List<double>();//набор хранения равномерных значений
+        private readonly List<double> _fxDi = new List<double>();//набор Y для функции распределения
+        private readonly List<double> _fxDe = new List<double>();//набор Y для функции  плотности 
+        private readonly List<int> _ll = new List<int>();// данные Y для хранения частот 
+        private readonly List<double> _num = new List<double>();//данные подписи Х на графике
 
 
         public Form1()
@@ -27,7 +27,7 @@ namespace Lab01
         }
 
         //метод подсчета частот
-        void CalcFreq(List<double> li)
+        private void CalcFreq(List<double> li)
         {
             _num.Clear();
             _ll.Clear();
@@ -55,7 +55,8 @@ namespace Lab01
             }
 
         }
-        double Mcorp()
+
+        private double Mcorp()
         {
             
             double mcup = 0;
@@ -63,7 +64,8 @@ namespace Lab01
             mcup = Math.Round(mcup, 4);
             return mcup;
         }
-        double Dcorp()
+
+        private double Dcorp()
         {     
             double dcup;
             dcup = Math.Pow((_b - _a), 2) / 12;
