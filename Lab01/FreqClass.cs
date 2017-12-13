@@ -10,6 +10,9 @@ namespace Lab01
     {
         public string Xvalue { get; set; }
 
+        public double LeftRange { get; set; }
+        public double RightRange { get; set; }
+
         public double Freq { get; set; } = 0;
 
         public FreqClass(string xvalue)

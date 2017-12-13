@@ -10,7 +10,7 @@ namespace Lab01
     {
         private int _numberOfElements;
         private List<double> _multyConList = new List<double>();
-        private readonly List<FreqClass> _freqlist;
+        private readonly List<FreqClass> _freqlist = new List<FreqClass>();
         private readonly List<FreqClass> _freqlist2;
 
         private List<double> SquaremedList { get;  } = new List<double>();
@@ -18,20 +18,25 @@ namespace Lab01
         public Form1()
         {
             InitializeComponent();
-
-            _freqlist = new List<FreqClass>
+            for (double i = 0; i < 1; i=i+0.1)
             {
-                new FreqClass("0-0.1"),
-                new FreqClass("0.1-0.2"),
-                new FreqClass("0.2-0.3"),
-                new FreqClass("0.3-0.4"),
-                new FreqClass("0.4-0.5"),
-                new FreqClass("0.5-0.6"),
-                new FreqClass("0.6-0.7"),
-                new FreqClass("0.7-0.8"),
-                new FreqClass("0.8-0.9"),
-                new FreqClass("0.9-1.0")
-            };
+                _freqlist.Add(new FreqClass(i+"-"+ (i+0.1)){LeftRange = i,RightRange = i + 0.1 });
+            }
+
+
+            //_freqlist = new List<FreqClass>
+            //{
+            //    new FreqClass("0-0.1"),
+            //    new FreqClass("0.1-0.2"),
+            //    new FreqClass("0.2-0.3"),
+            //    new FreqClass("0.3-0.4"),
+            //    new FreqClass("0.4-0.5"),
+            //    new FreqClass("0.5-0.6"),
+            //    new FreqClass("0.6-0.7"),
+            //    new FreqClass("0.7-0.8"),
+            //    new FreqClass("0.8-0.9"),
+            //    new FreqClass("0.9-1.0")
+            //};
 
             _freqlist2 = new List<FreqClass>(_freqlist);
 
@@ -46,18 +51,21 @@ namespace Lab01
                 v.Freq = 0;
             }
                foreach (double d in li)
-            {
-                if (d < 0.1) flist[0].Freq++;
-                if (d >= 0.1 && d < 0.2) flist[1].Freq++;
-                if (d >= 0.2 && d < 0.3) flist[2].Freq++;
-                if (d >= 0.3 && d < 0.4) flist[3].Freq++;
-                if (d >= 0.4 && d < 0.5) flist[4].Freq++;
-                if (d >= 0.5 && d < 0.6) flist[5].Freq++;
-                if (d >= 0.6 && d < 0.7) flist[6].Freq++;
-                if (d >= 0.7 && d < 0.8) flist[7].Freq++;
-                if (d >= 0.8 && d < 0.9) flist[8].Freq++;
-                if (d >= 0.9 && d < 1)   flist[9].Freq++;
-            }
+               {
+                   flist.Find(f => d >= f.LeftRange && d < f.RightRange).Freq++;
+
+
+                   //if (d < 0.1) flist[0].Freq++;
+                   //if (d >= 0.1 && d < 0.2) flist[1].Freq++;
+                   //if (d >= 0.2 && d < 0.3) flist[2].Freq++;
+                   //if (d >= 0.3 && d < 0.4) flist[3].Freq++;
+                   //if (d >= 0.4 && d < 0.5) flist[4].Freq++;
+                   //if (d >= 0.5 && d < 0.6) flist[5].Freq++;
+                   //if (d >= 0.6 && d < 0.7) flist[6].Freq++;
+                   //if (d >= 0.7 && d < 0.8) flist[7].Freq++;
+                   //if (d >= 0.8 && d < 0.9) flist[8].Freq++;
+                   //if (d >= 0.9 && d < 1)   flist[9].Freq++;
+               }
 
         }
         //расчет  коэффициента корреляции 
