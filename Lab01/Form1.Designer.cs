@@ -38,7 +38,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartMSK = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listViewMSK = new System.Windows.Forms.ListView();
@@ -52,21 +51,24 @@
             this.button1 = new System.Windows.Forms.Button();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxStart_value = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxNumber_of_elements = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelM = new System.Windows.Forms.Label();
             this.labelD = new System.Windows.Forms.Label();
             this.labelR = new System.Windows.Forms.Label();
+            this.numericStart_value = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownGenCounter = new System.Windows.Forms.NumericUpDown();
+            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartMSK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericStart_value)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGenCounter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chartMSK
@@ -98,10 +100,6 @@
             this.chartMSK.Text = "Таблица Частот";
             title1.Name = "Частоты";
             this.chartMSK.Titles.Add(title1);
-            // 
-            // freqClassBindingSource
-            // 
-            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
             // 
             // tabControl1
             // 
@@ -271,16 +269,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Введите четырехзначное число для начала генерации данных";
             // 
-            // textBoxStart_value
-            // 
-            this.textBoxStart_value.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStart_value.Location = new System.Drawing.Point(532, 19);
-            this.textBoxStart_value.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxStart_value.Name = "textBoxStart_value";
-            this.textBoxStart_value.Size = new System.Drawing.Size(48, 26);
-            this.textBoxStart_value.TabIndex = 3;
-            this.textBoxStart_value.Text = "1994";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -291,16 +279,6 @@
             this.label2.Size = new System.Drawing.Size(337, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Укажите количество генерируемых данных";
-            // 
-            // textBoxNumber_of_elements
-            // 
-            this.textBoxNumber_of_elements.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxNumber_of_elements.Location = new System.Drawing.Point(532, 68);
-            this.textBoxNumber_of_elements.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxNumber_of_elements.Name = "textBoxNumber_of_elements";
-            this.textBoxNumber_of_elements.Size = new System.Drawing.Size(89, 26);
-            this.textBoxNumber_of_elements.TabIndex = 5;
-            this.textBoxNumber_of_elements.Text = "100";
             // 
             // label3
             // 
@@ -367,20 +345,58 @@
             this.labelR.TabIndex = 11;
             this.labelR.Text = "0";
             // 
+            // numericStart_value
+            // 
+            this.numericStart_value.Location = new System.Drawing.Point(532, 23);
+            this.numericStart_value.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericStart_value.Name = "numericStart_value";
+            this.numericStart_value.Size = new System.Drawing.Size(120, 22);
+            this.numericStart_value.TabIndex = 13;
+            this.numericStart_value.Value = new decimal(new int[] {
+            1994,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDownGenCounter
+            // 
+            this.numericUpDownGenCounter.Location = new System.Drawing.Point(532, 73);
+            this.numericUpDownGenCounter.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.numericUpDownGenCounter.Name = "numericUpDownGenCounter";
+            this.numericUpDownGenCounter.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDownGenCounter.TabIndex = 13;
+            this.numericUpDownGenCounter.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // freqClassBindingSource
+            // 
+            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1522, 655);
+            this.Controls.Add(this.numericUpDownGenCounter);
+            this.Controls.Add(this.numericStart_value);
             this.Controls.Add(this.labelR);
             this.Controls.Add(this.labelD);
             this.Controls.Add(this.labelM);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxNumber_of_elements);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxStart_value);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -388,12 +404,14 @@
             this.Name = "Form1";
             this.Text = "Лабораторная №1";
             ((System.ComponentModel.ISupportInitialize)(this.chartMSK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericStart_value)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGenCounter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,9 +426,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listViewMSK;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxStart_value;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxNumber_of_elements;
         private System.Windows.Forms.BindingSource freqClassBindingSource;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -425,6 +441,8 @@
         private System.Windows.Forms.ListView listViewMKM;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.NumericUpDown numericStart_value;
+        private System.Windows.Forms.NumericUpDown numericUpDownGenCounter;
     }
 }
 

@@ -118,9 +118,9 @@ namespace Lab01
         {
             SquaremedList.Clear();
             listViewMSK.Items.Clear();
-            int localValue =Convert.ToInt32( textBoxStart_value.Text);
-            _numberOfElements = Convert.ToInt32(textBoxNumber_of_elements.Text);
-            int[] rData = new int[8];
+            int localValue =Convert.ToInt32( numericStart_value.Value);
+            _numberOfElements = Convert.ToInt32(numericUpDownGenCounter.Value);
+           
 
 
             if (localValue < 1000 || localValue > 9999)
@@ -130,14 +130,20 @@ namespace Lab01
             }
             for (int j = 1; j <= _numberOfElements; j++)
             {
-                localValue = (int)Math.Pow(localValue, 2);
-                for (int i = 7; i >= 0; i--)
-                {
-                    int rezid = localValue % 10;
-                    localValue = localValue / 10;
-                    rData[i] = rezid;
-                }
-                localValue = rData[2] * 1000 + rData[3] * 100 + rData[4] * 10 + rData[5];
+               
+                    localValue = (int)Math.Pow(localValue, 2);
+                
+               
+                string stringLocalValue = localValue.ToString().PadLeft(8, '0');
+                string stringNewValue = stringLocalValue.Substring(2, 4);
+                localValue = Int32.Parse(stringNewValue);
+                //for (int i = 7; i >= 0; i--)
+                //{
+                //    int rezid = localValue % 10;
+                //    localValue = localValue / 10;
+                //    rData[i] = rezid;
+                //}
+                //localValue = rData[2] * 1000 + rData[3] * 100 + rData[4] * 10 + rData[5];
                 SquaremedList.Add(localValue);
                 listViewMSK.Items.Add(localValue.ToString());
             }
@@ -155,8 +161,8 @@ namespace Lab01
         {
             _multyConList.Clear();
             listViewMKM.Items.Clear();
-            int localValue = Convert.ToInt32(textBoxStart_value.Text);
-            _numberOfElements = Convert.ToInt32(textBoxNumber_of_elements.Text);
+            int localValue = Convert.ToInt32(numericStart_value.Value);
+            _numberOfElements = Convert.ToInt32(numericUpDownGenCounter.Value);
             int modulM = Convert.ToInt32(textBoxMValue.Text);
             int kValue = Convert.ToInt32(textBoxKValue.Text);
 
