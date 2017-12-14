@@ -12,11 +12,11 @@ namespace lr03
 {
     public partial class Form1 : Form
     {   
-        List<double> xsegments=new List<double>();//диапазоны  для x 
-        List<double> ysegments=new List<double>();//диапазоны для у
-        List<int> countx;//количество конкретных значений по Х
-        List<int> county;//количество конкретных значений по У
-        List<XYData> countxy;//количество конкретных значений по комбинации  Х/У
+        List<double> _xsegments=new List<double>();//диапазоны  для x 
+        List<double> _ysegments=new List<double>();//диапазоны для у
+        List<int> _countx=new List<int>();//количество конкретных значений по Х
+        List<int> _county=new List<int>();//количество конкретных значений по У
+        List<XyData> _countxy = new List<XyData>();//количество конкретных значений по комбинации  Х/У
 
         public Form1()
         {
@@ -28,11 +28,11 @@ namespace lr03
             richTextBox1.Clear();
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
-            county = new List<int>(Convert.ToInt16(textBox2.Text));
-            countx = new List<int>(Convert.ToInt16(textBox1.Text));
-            countxy= new List<XYData>();
+            _county = new List<int>(Convert.ToInt16(textBox2.Text));
+            _countx = new List<int>(Convert.ToInt16(textBox1.Text));
+            _countxy= new List<XyData>();
 
-            clearfreq();
+            Clearfreq();
          
 
             //указываем сколько строк в таблице с учетом значений, вероятностей и сумм вероятностей
@@ -44,12 +44,16 @@ namespace lr03
             {
                 dataGridView1.Rows[1].Cells[i].Style.BackColor = System.Drawing.Color.Green;
                 dataGridView1.Rows[1].Cells[i].Style.ForeColor = System.Drawing.Color.White;
+                dataGridView1.Rows[1].Cells[i].ValueType = typeof(double);
+                dataGridView1.Rows[0].Cells[i].ValueType = typeof(int);
             }
 
             for (int i = 2; i < dataGridView1.RowCount-1; i++)
             {
                 dataGridView1.Rows[i].Cells[1].Style.BackColor = System.Drawing.Color.IndianRed;
                 dataGridView1.Rows[i].Cells[1].Style.ForeColor = System.Drawing.Color.White;
+                dataGridView1.Rows[i].Cells[1].ValueType = typeof(double);
+                dataGridView1.Rows[i].Cells[0].ValueType = typeof(int);
             }
 
             dataGridView1.Rows[0].Cells[0].Value = "X/Y";
@@ -95,7 +99,7 @@ namespace lr03
         }
 
         //заполнение середины таблицы через перемножение вероятностей
-        public void fillProbability() {
+        public void FillProbability() {
          
             for (int i = 2; i < dataGridView1.ColumnCount-1; i++) {
                 for (int j = 2; j < dataGridView1.RowCount-1; j++)
@@ -110,7 +114,7 @@ namespace lr03
 
         }
         //подсчет суммы вероятностей по Xi
-        private void distributionRowX() {
+        private void DistributionRowX() {
 
             int j;
 
@@ -133,7 +137,7 @@ namespace lr03
 
             }
         //подсчет суммы вероятностей по Уi
-        private void distributionColY()
+        private void DistributionColY()
         {
 
             int j; int i;
@@ -157,54 +161,54 @@ namespace lr03
 
         }
         //расчет матожидания Х
-        void calcMX() {
-            double sumMX = 0;
+        void CalcMx() {
+            double sumMx = 0;
             for (int j = 2; j < dataGridView1.ColumnCount - 1; j++)
             {
-                sumMX += Convert.ToDouble(dataGridView1.Rows[0].Cells[j].Value)
+                sumMx += Convert.ToDouble(dataGridView1.Rows[0].Cells[j].Value)
                 * Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[j].Value);
             }
-            mxLabel.Text = sumMX.ToString();
+            mxLabel.Text = sumMx.ToString();
 
         }
 
         //расчет матожидания У
-                void calcMY() {
+                void CalcMy() {
 
-            double sumMY = 0;
+            double sumMy = 0;
             for (int j = 2; j < dataGridView1.RowCount - 1; j++)
             {
-                sumMY += Convert.ToDouble(dataGridView1.Rows[j].Cells[0].Value)
+                sumMy += Convert.ToDouble(dataGridView1.Rows[j].Cells[0].Value)
                 * Convert.ToDouble(dataGridView1.Rows[j].Cells[dataGridView1.ColumnCount - 1].Value);
             }
-            myLabel.Text = sumMY.ToString();
+            myLabel.Text = sumMy.ToString();
 
         }
         //расчет дисперсии Х
-        void calcDX() {
-            double sumDX = 0;
+        void CalcDx() {
+            double sumDx = 0;
             for (int j = 2; j < dataGridView1.ColumnCount - 1; j++)
             {
-                sumDX += Math.Pow(Convert.ToDouble(dataGridView1.Rows[0].Cells[j].Value),2)
+                sumDx += Math.Pow(Convert.ToDouble(dataGridView1.Rows[0].Cells[j].Value),2)
                 * Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[j].Value);
             }
-            sumDX = sumDX - Math.Pow(Convert.ToDouble(mxLabel.Text), 2);
-            dxLabel.Text = sumDX.ToString("N3");
+            sumDx = sumDx - Math.Pow(Convert.ToDouble(mxLabel.Text), 2);
+            dxLabel.Text = sumDx.ToString("N3");
 
         }
         //расчет дисперсии У
-        void calcDY() {
-            double sumDY = 0;
+        void CalcDy() {
+            double sumDy = 0;
             for (int j = 2; j < dataGridView1.RowCount - 1; j++)
             {
-                sumDY += Math.Pow(Convert.ToDouble(dataGridView1.Rows[j].Cells[0].Value),2)
+                sumDy += Math.Pow(Convert.ToDouble(dataGridView1.Rows[j].Cells[0].Value),2)
                 * Convert.ToDouble(dataGridView1.Rows[j].Cells[dataGridView1.ColumnCount - 1].Value);
             }
-            sumDY= sumDY - Math.Pow(Convert.ToDouble(myLabel.Text), 2);
-            dyLabel.Text = sumDY.ToString("N3");
+            sumDy= sumDy - Math.Pow(Convert.ToDouble(myLabel.Text), 2);
+            dyLabel.Text = sumDy.ToString("N3");
         }
 
-        double  MXY() {
+        double  Mxy() {
 
             double mJoint = 0;
             for (int i =2; i < dataGridView1.RowCount - 1; i++)
@@ -234,7 +238,7 @@ namespace lr03
             return r;
         }
         //метод подготовки прорисовки графиков
-        void prepaireCharts() {
+        void PrepaireCharts() {
             //очистка графиков
             xchart.Series.Clear();
             ychart.Series.Clear();
@@ -257,8 +261,8 @@ namespace lr03
                 {
                     xychart.Series.Add(dataGridView1.Rows[0].Cells[i].Value.ToString()+ "-" + dataGridView1.Rows[j].Cells[0].Value.ToString());
                     //заполнение пользовательского класса парами данных
-                    XYData d = new XYData(Convert.ToInt16(dataGridView1.Rows[0].Cells[i].Value), Convert.ToInt16(dataGridView1.Rows[j].Cells[0].Value));
-                   countxy.Add(d);
+                    XyData d = new XyData(Convert.ToInt16(dataGridView1.Rows[0].Cells[i].Value), Convert.ToInt16(dataGridView1.Rows[j].Cells[0].Value));
+                   _countxy.Add(d);
                 }
 
                 }
@@ -267,24 +271,24 @@ namespace lr03
             }
 
         //метод прорисоки графиков
-            void fillCharts()
+            void FillCharts()
         {
 
             int c = 1;
-            foreach (var x in countx)
+            foreach (var x in _countx)
             {
                 xchart.Series[c++].Points.Add(x);
             }
             c = 1;
-            foreach (var x in county)
+            foreach (var x in _county)
             {
                 ychart.Series[c++].Points.Add(x);
             }
 
             c = 1;
-            foreach (var x in countxy)
+            foreach (var x in _countxy)
             {
-                xychart.Series[c++].Points.Add(x.count);
+                xychart.Series[c++].Points.Add(x.Count);
             }
 
 
@@ -296,11 +300,11 @@ namespace lr03
             double sum = 0;
           
             //заполнение таблицы вероятностями
-            fillProbability();
+            FillProbability();
             //суммы по столбцам
-            distributionRowX();
+            DistributionRowX();
             //суммы по строкам
-            distributionColY();
+            DistributionColY();
 
             //проверка что сумма =1
             for (int i = 2; i < dataGridView1.ColumnCount-1; i++)
@@ -308,7 +312,7 @@ namespace lr03
 
                 sum += (double)dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[i].Value;
             }
-            if (sum != 1)
+            if (Math.Abs(sum - 1.0d) > 0.00001)
             {
                 MessageBox.Show("Сумма вероятностей не равна 1");
 
@@ -316,58 +320,58 @@ namespace lr03
             }
 
             //вычисление матожидания и дисперсии
-            calcMX();
-            calcMY();
-            calcDX();
-            calcDY();
-           yxmLabel.Text= MXY().ToString();
+            CalcMx();
+            CalcMy();
+            CalcDx();
+            CalcDy();
+           yxmLabel.Text= Mxy().ToString();
             rlabel.Text= CalcR().ToString();//коэффициент корреляции
 
             //расчет диапазонов X суммированим каждой вероятности (0-1)
-            xsegments.Add(0);
+            _xsegments.Add(0);
             int pos = 0;
             for (int i = 2; i < dataGridView1.ColumnCount - 1; i++) {
 
-                xsegments.Add(xsegments[pos]+Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[i].Value));
+                _xsegments.Add(_xsegments[pos]+Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[i].Value));
                 pos++;
             }
             //расчет диапазонов Yсуммированим каждой вероятности (0-1)
-            ysegments.Add(0);
+            _ysegments.Add(0);
            pos = 0;
             for (int i = 2; i < dataGridView1.RowCount - 1; i++)
             {
 
-                ysegments.Add(ysegments[pos] + Convert.ToDouble(dataGridView1.Rows[i].Cells[dataGridView1.ColumnCount - 1].Value));
+                _ysegments.Add(_ysegments[pos] + Convert.ToDouble(dataGridView1.Rows[i].Cells[dataGridView1.ColumnCount - 1].Value));
                 pos++;
             }
 
-            prepaireCharts();
+            PrepaireCharts();
 
            
 
         }
 
-        void clearfreq() {
+        void Clearfreq() {
 
-          countx.Clear();
-           county.Clear();
-            countxy.Clear();
+          _countx.Clear();
+           _county.Clear();
+            _countxy.Clear();
             //создаем списки на указанное количество элементов и заполняем нулями
             for (int i = 0; i < Convert.ToInt16(textBox1.Text); i++)
             {
-                county.Add(0);
+                _county.Add(0);
             }
             for (int i = 0; i < Convert.ToInt16(textBox2.Text); i++)
             {
-                countx.Add(0);
+                _countx.Add(0);
             }
-            prepaireCharts();
+            PrepaireCharts();
         }
 
         //генерация данных по заданному виду распределения
         private void button3_Click(object sender, EventArgs e)
         {    //очистка графиков
-            clearfreq();
+            Clearfreq();
             richTextBox1.Clear();
          
         
@@ -384,11 +388,11 @@ namespace lr03
             for (int i = 0; i < count; i++) {
                 double xrand = rnd.NextDouble();
                 //проверка, что х относится к конкретному сегменту
-                for (int j=0;j<xsegments.Count; j++) {
-                    if (xrand < xsegments[j])
+                for (int j=0;j<_xsegments.Count; j++) {
+                    if (xrand < _xsegments[j])
                     {
                         xindex = j;
-                        countx[xindex-1]++;
+                        _countx[xindex-1]++;
                         break;
                     }
                 }
@@ -397,22 +401,22 @@ namespace lr03
                richTextBox1.AppendText(" X: "+ xvalue.ToString());
 
                    double yrand = rnd.NextDouble();
-                    for (int j = 0; j < ysegments.Count; j++)
+                    for (int j = 0; j < _ysegments.Count; j++)
                     {//проверка что у относится к конкретномму сегменту
-                        if (yrand < ysegments[j])
+                        if (yrand < _ysegments[j])
                         {
                             yindex = j;
-                        county[yindex - 1]++;
+                        _county[yindex - 1]++;
                         break;
                         }
                     }
                 //выбираем Y в RichTextBox
                 yvalue = (int)dataGridView1.Rows[1 + yindex].Cells[0].Value;
                 richTextBox1.AppendText(" Y: " + yvalue.ToString());
-                    foreach (var v in countxy) {
+                    foreach (var v in _countxy) {
                     //проверка попадания комбинации XУ в конкретный диапазон
-                    if (v.x == xvalue && v.y == yvalue)
-                        v.count++;
+                    if (v.X == xvalue && v.Y == yvalue)
+                        v.Count++;
                 }
                 
                 //выбираем P вероятность в RichTextBox
@@ -421,7 +425,7 @@ namespace lr03
 
             }
             //заполнение графиков данными
-            fillCharts();
+            FillCharts();
 
         }
     }

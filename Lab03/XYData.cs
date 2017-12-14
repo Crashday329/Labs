@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace lr03
 {
-    class XYData
+    class XyData
     {
-        public int x;
-        public int y;
-        public int count=0;
-        public XYData(int x,int y)
+        public int X;
+        public int Y;
+        public int Count=0;
+        public XyData(int x,int y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
 
     }
