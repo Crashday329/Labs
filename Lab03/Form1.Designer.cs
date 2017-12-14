@@ -39,8 +39,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.NumericUpDown();
+            this.textBox2 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.kolichTextBox = new System.Windows.Forms.TextBox();
+            this.kolichTextBox = new System.Windows.Forms.NumericUpDown();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.xchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ychart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -360,8 +360,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.NumericUpDown textBox1;
+        private System.Windows.Forms.NumericUpDown textBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
@@ -374,7 +374,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox kolichTextBox;
+        private System.Windows.Forms.NumericUpDown kolichTextBox;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart xchart;
         private System.Windows.Forms.DataVisualization.Charting.Chart ychart;
