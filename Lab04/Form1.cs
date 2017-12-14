@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace lab04
 {
     public partial class Form1 : Form
     {
-        Result res;
+        Result _res;
         public Form1()
         {
             InitializeComponent();
-            initgr();
+            Initgr();
         }
-        void initgr() {
+        void Initgr() {
              chart1.Series.Clear();
             
             chart1.Name = "Распределение случаев:";
@@ -27,11 +28,11 @@ namespace lab04
             chart1.Series.Add("не менял выбор и победил");
             chart1.Series.Add("не менял выбор и потерял");
             chart1.ChartAreas[0].AxisY.Maximum = Convert.ToInt16(textBox1.Text)/2;
-            res = new Result();
+            _res = new Result();
         }
-        Result game()
+        void Game()
             {
-            initgr();
+            Initgr();
 
             Random rnd = new Random();
             int iterations = Convert.ToInt16(textBox1.Text);
@@ -76,43 +77,66 @@ namespace lab04
                 if (doors[selected] != 0)
                 {
                     if (changeChoice)//раз мы изменили выбор, то правильно сделали
-                        res.changedAndWon++;
+                        _res.ChangedAndWon++;
                     else
-                        res.keepAndWon++;//правильно сделали что не изменили выбор
+                        _res.KeepAndWon++;//правильно сделали что не изменили выбор
                 }
                 else// нам не попал вариант с машинкой
                 {
                     if (changeChoice)//изменили и проиграли
-                        res.changedAndLost++;
+                        _res.ChangedAndLost++;
                     else
-                        res.keepAndLost++;// не изменили выбор и поэтому проиграли
+                        _res.KeepAndLost++;// не изменили выбор и поэтому проиграли
                 }
             }
-            chart1.Series[0].Points.Add(res.changedAndWon);
-            chart1.Series[1].Points.Add(res.changedAndLost);
-            chart1.Series[2].Points.Add(res.keepAndWon);
-            chart1.Series[3].Points.Add(res.keepAndLost);
-
-            return res;
+            DrawResultsInCharts();
             }
 
-
-
-
-
-
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private void DrawResultsInCharts()
         {
-           game();
+            chart1.Series.ToList().ForEach(s=>s.Points.Clear());
+            chart1.Series[0].Points.Add(_res.ChangedAndWon);
+            chart1.Series[1].Points.Add(_res.ChangedAndLost);
+            chart1.Series[2].Points.Add(_res.KeepAndWon);
+            chart1.Series[3].Points.Add(_res.KeepAndLost);
+        }
+
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+           Game();
            
 
             Console.WriteLine();
 
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (var gameForm = new GameForm())
+            {
+                gameForm.ShowDialog();
+                switch (gameForm.GameResult)
+                {
+                    case GameForm.ResultVariants.KeepAndLost:
+                        _res.KeepAndLost++;
+                        break;
+                    case GameForm.ResultVariants.KeepAndWon:
+                        _res.KeepAndWon++;
+                        break;
+                    case GameForm.ResultVariants.ChangedAndLost:
+                        _res.ChangedAndLost++;
+                        break;
+                    case GameForm.ResultVariants.ChangedAndWon:
+                        _res.ChangedAndWon++;
+                        break;
+                }
+                DrawResultsInCharts();
+            }                
+
+
+        }
     }
-}
+    }
+

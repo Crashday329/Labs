@@ -8,17 +8,17 @@ namespace lab04
 {
     public class Result
     {
-        public int changedAndWon;//изменил выбор и победил
-        public int changedAndLost;//изменил выбор и потерял
-        public int keepAndWon;//не менял выбор и победил
-        public int keepAndLost;//не изменил выбор и потерял
+        public int ChangedAndWon;//изменил выбор и победил
+        public int ChangedAndLost;//изменил выбор и потерял
+        public int KeepAndWon;//не менял выбор и победил
+        public int KeepAndLost;//не изменил выбор и потерял
 
         public Result()
         {
-            changedAndWon = 0;
-            changedAndLost = 0;
-            keepAndWon = 0;
-            keepAndLost = 0;
+            ChangedAndWon = 0;
+            ChangedAndLost = 0;
+            KeepAndWon = 0;
+            KeepAndLost = 0;
 
         }
 
