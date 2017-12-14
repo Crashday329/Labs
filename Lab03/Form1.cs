@@ -256,14 +256,27 @@ namespace lr03
         }
 
         double CalcK() {
-            double k = Convert.ToDouble(yxmLabel.Text) - Convert.ToDouble(mxLabel.Text) * Convert.ToDouble(myLabel.Text);
-            return k;
+
+            double sum1 = 0;
+            for (int j = 2; j < dataGridView1.ColumnCount - 1; j++)
+            {
+                sum1 += (Convert.ToDouble(dataGridView1.Rows[0].Cells[j].Value)
+                         - Convert.ToDouble(mxLabel.Text))*(Convert.ToDouble(dataGridView1.Rows[j].Cells[0].Value)- Convert.ToDouble(myLabel.Text));
+            }
+            
+          //  double k = Convert.ToDouble(yxmLabel.Text) - Convert.ToDouble(mxLabel.Text) * Convert.ToDouble(myLabel.Text);
+            return sum1;
            
         }
 
         double CalcR()
         {
-            double r = CalcK() / Math.Sqrt(Convert.ToDouble(dxLabel.Text)) / Math.Sqrt(Convert.ToDouble(dyLabel.Text));
+            double sum1 = 0;
+            for (int j = 2; j < dataGridView1.ColumnCount - 1; j++)
+            {
+                sum1 += Math.Pow( (Convert.ToDouble(dataGridView1.Rows[j].Cells[0].Value) - Convert.ToDouble(myLabel.Text)),2);
+            }
+            double r = CalcK() / sum1;
             return r;
         }
         //метод подготовки прорисовки графиков
@@ -354,7 +367,7 @@ namespace lr03
             CalcDx();
             CalcDy();
            yxmLabel.Text= Mxy().ToString();
-            rlabel.Text= CalcR().ToString();//коэффициент корреляции
+            rlabel.Text= CalcR().ToString("N3");//коэффициент корреляции
 
             //расчет диапазонов X суммированим каждой вероятности (0-1)
             _xsegments.Add(0);
