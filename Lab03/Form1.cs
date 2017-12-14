@@ -87,7 +87,7 @@ namespace lr03
                     dataGridView1.Rows[1].Cells[i].Value = Math.Round(xvar,3);
                 else
                 {
-                    var curVar = Math.Round((varRnd.NextDouble() * xvar), 2);
+                    var curVar = Math.Round((varRnd.NextDouble() * (xvar/ (double)(dataGridView1.ColumnCount/2.5d))), 2);
                     dataGridView1.Rows[1].Cells[i].Value = curVar;
                     xvar = xvar - curVar;
                 }
@@ -100,7 +100,7 @@ namespace lr03
                     dataGridView1.Rows[i].Cells[1].Value = Math.Round(yvar, 3);
                 else
                 {
-                    var curVar = Math.Round((varRnd.NextDouble() * yvar), 2);
+                    var curVar = Math.Round((varRnd.NextDouble() * (yvar / (double)(dataGridView1.ColumnCount / 2.5d))), 2);
                     dataGridView1.Rows[i].Cells[1].Value = curVar;
                     yvar = yvar - curVar;
                 }
@@ -415,7 +415,7 @@ namespace lr03
             int yvalue;
             Random rnd = new Random();
             for (int i = 0; i < count; i++) {
-                double xrand = rnd.NextDouble();
+                var xrand = rnd.NextDouble();
                 //проверка, что х относится к конкретному сегменту
                 for (int j=0;j<_xsegments.Count; j++) {
                     if (xrand < _xsegments[j])
