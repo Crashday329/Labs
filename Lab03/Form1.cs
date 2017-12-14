@@ -75,26 +75,55 @@ namespace lr03
                 }
             }
 
-            
+            double xvar = 1.0;
+            double yvar = 1.0;
+            Random varRnd = new Random();
             /////данные для теста
-            dataGridView1.Rows[0].Cells[2].Value = 2;
-            dataGridView1.Rows[0].Cells[3].Value = 5;
-            dataGridView1.Rows[0].Cells[4].Value = 9;
-            dataGridView1.Rows[1].Cells[2].Value = 0.2;
-            dataGridView1.Rows[1].Cells[3].Value = 0.2;
-            dataGridView1.Rows[1].Cells[4].Value = 0.6;
+            for (int i = 2; i < dataGridView1.ColumnCount-1; i++)
+            {
+                dataGridView1.Rows[0].Cells[i].Value = i*3;
 
-            dataGridView1.Rows[2].Cells[0].Value =3;
-            dataGridView1.Rows[3].Cells[0].Value = 5;
-            dataGridView1.Rows[4].Cells[0].Value = 7;
-            dataGridView1.Rows[5].Cells[0].Value = 9;
-            dataGridView1.Rows[6].Cells[0].Value = 12;
+                if (i == dataGridView1.ColumnCount - 2)
+                    dataGridView1.Rows[1].Cells[i].Value = Math.Round(xvar,3);
+                else
+                {
+                    var curVar = Math.Round((varRnd.NextDouble() * xvar), 2);
+                    dataGridView1.Rows[1].Cells[i].Value = curVar;
+                    xvar = xvar - curVar;
+                }
+            }
+            for (int i = 2; i < dataGridView1.RowCount - 1; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = i * 3;
 
-            dataGridView1.Rows[2].Cells[1].Value = 0.05;
-            dataGridView1.Rows[3].Cells[1].Value = 0.3;
-            dataGridView1.Rows[4].Cells[1].Value = 0.05;
-            dataGridView1.Rows[5].Cells[1].Value = 0.2;
-            dataGridView1.Rows[6].Cells[1].Value = 0.4;
+                if (i == dataGridView1.RowCount - 2)
+                    dataGridView1.Rows[i].Cells[1].Value = Math.Round(yvar, 3);
+                else
+                {
+                    var curVar = Math.Round((varRnd.NextDouble() * yvar), 2);
+                    dataGridView1.Rows[i].Cells[1].Value = curVar;
+                    yvar = yvar - curVar;
+                }
+            }
+            //dataGridView1.Rows[0].Cells[2].Value = 2;
+            //dataGridView1.Rows[0].Cells[3].Value = 5;
+            //dataGridView1.Rows[0].Cells[4].Value = 9;
+
+            //dataGridView1.Rows[1].Cells[2].Value = 0.2;
+            //dataGridView1.Rows[1].Cells[3].Value = 0.2;
+            //dataGridView1.Rows[1].Cells[4].Value = 0.6;
+
+            //dataGridView1.Rows[2].Cells[0].Value =3;
+            //dataGridView1.Rows[3].Cells[0].Value = 5;
+            //dataGridView1.Rows[4].Cells[0].Value = 7;
+            //dataGridView1.Rows[5].Cells[0].Value = 9;
+            //dataGridView1.Rows[6].Cells[0].Value = 12;
+
+            //dataGridView1.Rows[2].Cells[1].Value = 0.05;
+            //dataGridView1.Rows[3].Cells[1].Value = 0.3;
+            //dataGridView1.Rows[4].Cells[1].Value = 0.05;
+            //dataGridView1.Rows[5].Cells[1].Value = 0.2;
+            //dataGridView1.Rows[6].Cells[1].Value = 0.4;
 
         }
 
