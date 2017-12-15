@@ -203,10 +203,36 @@ namespace Lab01
     //построение графика распределения
     private void PaintDistributionFunction()
         {
-            for (int i = 0; i < _numberOfElements; i++)
+            var mu = (_a + _b) / 2;
+           
+            if (LineDistr.Checked)
             {
-                _fxDi.Add(Math.Abs((_ravnomernList[i] - _a)) / (_b - _a));
+                for (int i = 0; i < _numberOfElements; i++)
+                {
+                    _fxDi.Add(Math.Abs((_ravnomernList[i] - _a)) / (_b - _a));
+                }
             }
+            if (NormalDistr.Checked)
+            {
+                for (int i = 0; i < _numberOfElements; i++)
+                {
+                   
+                    _fxDi.Add(
+                       (Math.Pow( _ravnomernList[i],2)-1)*Math.Exp(-1* Math.Pow(_ravnomernList[i], 2))/2
+                        );
+                }
+                // z = Math.Abs((NextGaussian(r, _a, _b)));//Math.Log(1 - z) / (-0.1d);
+            }
+            if (ExpoDistr.Checked)
+            {
+                for (int i = 0; i < _numberOfElements; i++)
+                {
+                    _fxDi.Add(1- Math.Exp(-1 * _ravnomernList[i]*(1/mu)));
+                }
+                //z = NextExpotential(r, _a, _b);
+            }
+
+           
             dChart.ChartAreas[0].AxisX.Minimum = _a - 1;
             dChart.ChartAreas[0].AxisX.Maximum = _b + 1;
             dChart.ChartAreas[0].AxisY.Minimum = 0;
@@ -215,13 +241,41 @@ namespace Lab01
             dChart.Series[0].Points.DataBindXY(_ravnomernList, _fxDi);
 
         }
+        
         //построение графика плотности
         private void PaintDensityFunction()
         {
-            for (int i = 0; i < _numberOfElements; i++)
+            var mu = (_a + _b) / 2;
+            var sigma = (_b - mu) / 3;
+            if (LineDistr.Checked)
             {
-                _fxDe.Add(1 / (_b - _a));
+                for (int i = 0; i < _numberOfElements; i++)
+                {
+                    _fxDe.Add(1 / (_b - _a));
+                }
             }
+            if (NormalDistr.Checked)
+            {
+
+                for (int i = 0; i < _numberOfElements; i++)
+                {
+                    _fxDe.Add(1 / (sigma * Math.Sqrt(2*Math.PI))*Math.Exp(-1*Math.Pow(_ravnomernList[i] - mu,2)/ (2*Math.Pow(sigma,2))));
+                }
+
+                
+              
+            }
+            if (ExpoDistr.Checked)
+            {  for (int i = 0; i < _numberOfElements; i++)
+                {
+                    _fxDe.Add(_ravnomernList[i] < 0 ? 0 : _b*Math.Exp(-1*_ravnomernList[i] ));
+                }
+                
+            }
+
+
+
+            
 
             fChart.ChartAreas[0].AxisX.Minimum = _a - 1;
             fChart.ChartAreas[0].AxisX.Maximum = _b + 1;

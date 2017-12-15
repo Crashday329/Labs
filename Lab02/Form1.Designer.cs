@@ -51,7 +51,6 @@
             this.labelD = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBoxKValue = new System.Windows.Forms.NumericUpDown();
@@ -69,11 +68,11 @@
             this.LineDistr = new System.Windows.Forms.RadioButton();
             this.NormalDistr = new System.Windows.Forms.RadioButton();
             this.ExpoDistr = new System.Windows.Forms.RadioButton();
+            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.textBoxStart_value)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxNumber_of_elements)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxKValue)).BeginInit();
@@ -82,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AtextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtextBox)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -247,10 +247,6 @@
             title1.Name = "Частоты";
             this.chart1.Titles.Add(title1);
             // 
-            // freqClassBindingSource
-            // 
-            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
-            // 
             // dChart
             // 
             chartArea2.AxisX.IsLabelAutoFit = false;
@@ -271,7 +267,7 @@
             this.dChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
-            series2.Name = "Плотность распределения";
+            series2.Name = "Функция распределения";
             series2.XValueMember = "Xvalue";
             series2.YValueMembers = "Freq";
             this.dChart.Series.Add(series2);
@@ -301,13 +297,13 @@
             this.fChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
-            series3.Name = "Функция распределения";
+            series3.Name = "Плотность распределения";
             series3.XValueMember = "Xvalue";
             series3.YValueMembers = "Freq";
             this.fChart.Series.Add(series3);
             this.fChart.Size = new System.Drawing.Size(684, 149);
             this.fChart.TabIndex = 10;
-            this.fChart.Text = "Функция распределенея";
+            this.fChart.Text = "Плотность распределения";
             title3.Name = "Частоты";
             this.fChart.Titles.Add(title3);
             // 
@@ -483,6 +479,10 @@
             this.ExpoDistr.Text = "Экспонента";
             this.ExpoDistr.UseVisualStyleBackColor = true;
             // 
+            // freqClassBindingSource
+            // 
+            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -512,7 +512,6 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxKValue)).EndInit();
@@ -522,6 +521,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BtextBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
