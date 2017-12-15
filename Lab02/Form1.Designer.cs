@@ -51,6 +51,7 @@
             this.labelD = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBoxKValue = new System.Windows.Forms.NumericUpDown();
@@ -64,11 +65,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.AtextBox = new System.Windows.Forms.NumericUpDown();
             this.BtextBox = new System.Windows.Forms.NumericUpDown();
-            this.freqClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LineDistr = new System.Windows.Forms.RadioButton();
+            this.NormalDistr = new System.Windows.Forms.RadioButton();
+            this.ExpoDistr = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxStart_value)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxNumber_of_elements)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxKValue)).BeginInit();
@@ -76,7 +81,7 @@
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AtextBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtextBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -242,6 +247,10 @@
             title1.Name = "Частоты";
             this.chart1.Titles.Add(title1);
             // 
+            // freqClassBindingSource
+            // 
+            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
+            // 
             // dChart
             // 
             chartArea2.AxisX.IsLabelAutoFit = false;
@@ -368,7 +377,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(769, 19);
+            this.button1.Location = new System.Drawing.Point(812, 28);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(262, 43);
@@ -391,7 +400,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(573, 51);
+            this.label8.Location = new System.Drawing.Point(543, 51);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(21, 16);
             this.label8.TabIndex = 12;
@@ -400,7 +409,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(573, 77);
+            this.label9.Location = new System.Drawing.Point(543, 77);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(21, 16);
             this.label9.TabIndex = 13;
@@ -408,7 +417,7 @@
             // 
             // AtextBox
             // 
-            this.AtextBox.Location = new System.Drawing.Point(596, 51);
+            this.AtextBox.Location = new System.Drawing.Point(566, 51);
             this.AtextBox.Name = "AtextBox";
             this.AtextBox.Size = new System.Drawing.Size(55, 22);
             this.AtextBox.TabIndex = 14;
@@ -420,7 +429,7 @@
             // 
             // BtextBox
             // 
-            this.BtextBox.Location = new System.Drawing.Point(596, 77);
+            this.BtextBox.Location = new System.Drawing.Point(566, 77);
             this.BtextBox.Name = "BtextBox";
             this.BtextBox.Size = new System.Drawing.Size(55, 22);
             this.BtextBox.TabIndex = 15;
@@ -430,15 +439,56 @@
             0,
             0});
             // 
-            // freqClassBindingSource
+            // groupBox1
             // 
-            this.freqClassBindingSource.DataSource = typeof(Lab01.FreqClass);
+            this.groupBox1.Controls.Add(this.ExpoDistr);
+            this.groupBox1.Controls.Add(this.NormalDistr);
+            this.groupBox1.Controls.Add(this.LineDistr);
+            this.groupBox1.Location = new System.Drawing.Point(628, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(160, 94);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Распределение";
+            // 
+            // LineDistr
+            // 
+            this.LineDistr.AutoSize = true;
+            this.LineDistr.Checked = true;
+            this.LineDistr.Location = new System.Drawing.Point(7, 22);
+            this.LineDistr.Name = "LineDistr";
+            this.LineDistr.Size = new System.Drawing.Size(127, 20);
+            this.LineDistr.TabIndex = 0;
+            this.LineDistr.TabStop = true;
+            this.LineDistr.Text = "Равномерное";
+            this.LineDistr.UseVisualStyleBackColor = true;
+            // 
+            // NormalDistr
+            // 
+            this.NormalDistr.AutoSize = true;
+            this.NormalDistr.Location = new System.Drawing.Point(7, 45);
+            this.NormalDistr.Name = "NormalDistr";
+            this.NormalDistr.Size = new System.Drawing.Size(118, 20);
+            this.NormalDistr.TabIndex = 0;
+            this.NormalDistr.Text = "Нормальное";
+            this.NormalDistr.UseVisualStyleBackColor = true;
+            // 
+            // ExpoDistr
+            // 
+            this.ExpoDistr.AutoSize = true;
+            this.ExpoDistr.Location = new System.Drawing.Point(6, 68);
+            this.ExpoDistr.Name = "ExpoDistr";
+            this.ExpoDistr.Size = new System.Drawing.Size(115, 20);
+            this.ExpoDistr.TabIndex = 0;
+            this.ExpoDistr.Text = "Экспонента";
+            this.ExpoDistr.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 598);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtextBox);
             this.Controls.Add(this.AtextBox);
             this.Controls.Add(this.label9);
@@ -462,6 +512,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBoxKValue)).EndInit();
@@ -469,7 +520,8 @@
             this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AtextBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtextBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freqClassBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,6 +552,10 @@
         private System.Windows.Forms.NumericUpDown AtextBox;
         private System.Windows.Forms.NumericUpDown BtextBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton ExpoDistr;
+        private System.Windows.Forms.RadioButton NormalDistr;
+        private System.Windows.Forms.RadioButton LineDistr;
     }
 }
 
